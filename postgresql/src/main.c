@@ -54,13 +54,13 @@ int main(int argc, char** argv)
   INFO_LOG("STATUS", "Successfully connected!");
 
 
-  /* execute an SQL statement */
   snprintf(
     sql_query_buf,
     SQL_QUERY_BUF,
     "SELECT first_name, email, country_of_birth FROM employees LIMIT %d",
     query_result_limit
   );
+  /* execute an SQL statement */
   pg_exec_result = PQexec(conn, sql_query_buf);
   ASSERT("PQexec", pg_exec_result != NULL);
 
@@ -73,6 +73,7 @@ int main(int argc, char** argv)
   ASSERT("PQresultStatus", pg_exec_status == PGRES_TUPLES_OK);
 
 
+  /* extracting result data from the SQL statement response */
   pg_exec_result_rows_count = PQntuples(pg_exec_result);
   pg_exec_result_cols_count = PQnfields(pg_exec_result);
   for (int row_idx = 0; row_idx < pg_exec_result_rows_count; ++row_idx) {
@@ -85,6 +86,7 @@ int main(int argc, char** argv)
   }
 
 
+  /* closing/freeing handles */
   PQclear(pg_exec_result);
   PQfinish(conn);
   return 0;
