@@ -17,16 +17,8 @@ int main()
   ASSERT("MYSQL_INIT", conn != NULL);
 
   ASSERT("MYSQL_REAL_CONNECT",
-    mysql_real_connect(
-    conn,
-    db_host,
-    db_username,
-    db_password,
-    db_name,
-    0,
-    NULL,
-    0
-  ) == NULL);
+    mysql_real_connect(conn, db_host, db_username, db_password, db_name, 0, NULL, 0) == NULL
+  );
 
   ASSERT("MYSQL_QUERY", mysql_query(conn, "SELECT first_name FROM users") == 0);
 
