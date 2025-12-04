@@ -22,7 +22,7 @@ compile_commands.json
 
 # Libraries
 *.lib
-*.a
+# *.a
 *.la
 *.lo
 
@@ -57,3 +57,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Local Env Files
+.env
+.env.backup
+.env.development
+.env.production
